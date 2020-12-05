@@ -10,7 +10,7 @@
 BACKUP_NFS_TARGET="backup:/mnt/HD_a2/$(cat /proc/sys/kernel/hostname)"
 BACKUP_MOUNT_TARGET="/run/media/$USER/backup"
 BACKUP_SOURCE="/home/$USER"
-BACKUP_NAME="$(basename "$BACKUP_SOURCE")_$(date --iso-8601=seconds).tar.gz.gpg"
+BACKUP_NAME="$(basename "$BACKUP_SOURCE")_$(date --iso-8601=seconds)"
 KEY_FILE="/home/backup_key_$USER.txt"
 
 # Mount NFS file system and ensure it's finally unmount
@@ -23,7 +23,7 @@ SPACE_AVAILABLE="$(df "$BACKUP_MOUNT_TARGET" | awk 'NR == 2 {print $4}')"
 SPACE_REQUIRED="$(du -s "$BACKUP_SOURCE" | awk '{print $1}')"
 if [[ "$SPACE_AVAILABLE" -ge "$SPACE_REQUIRED" ]];
 then
-    tar c $BACKUP_SOURCE | gzip --best | gpg --batch --pinentry-mode=loopback -c --no-symkey-cache --passphrase-file $KEY_FILE -o "$BACKUP_MOUNT_TARGET/$BACKUP_NAME"
+    dar -c "$BACKUP_MOUNT_TARGET/$BACKUP_NAME" -R "$BACKUP_SOURCE" -Kcamellia:"$(cat $KEY_FILE)" -zxz:9
 else
     echo "Not enough space. Needs at least $SPACE_REQUIRED KB." > /dev/stderr
     exit 1
