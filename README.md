@@ -1,6 +1,10 @@
 # Backup & Restore scripts
 This scripts are written to backup and restore a choosen directory on an [Linux](https://en.wikipedia.org/wiki/Linux) operating system, if the backup destination is an [NFS](https://en.wikipedia.org/wiki/Network_File_System) network storage ([NAS](https://en.wikipedia.org/wiki/Network-attached_storage)).
 
+## Features
+ * Unattended backups
+ * Backup progress indicator
+
 ## Requirements
  * [DAR](http://dar.linux.free.fr)
  * NFS support
