@@ -9,8 +9,7 @@
 # Configuration
 BACKUP_NFS_TARGET="backup:/mnt/HD_a2/$(cat /proc/sys/kernel/hostname)"
 BACKUP_MOUNT_TARGET="/run/media/$USER/backup"
-#BACKUP_SOURCE="/home/$USER"
-BACKUP_SOURCE="test"
+BACKUP_SOURCE="/home/$USER"
 BACKUP_NAME="$(basename "$BACKUP_SOURCE")_$(date --iso-8601=seconds)"
 KEY_FILE="/home/backup_key_$USER.txt"
 
