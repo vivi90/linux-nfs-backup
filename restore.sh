@@ -34,7 +34,7 @@ SPACE_AVAILABLE="$(df "$RESTORE_TARGET" | awk 'NR == 2 {print $4}')"
 SPACE_REQUIRED="$(du -s "$BACKUP_MOUNT_TARGET/${BACKUPS[$BACKUP_SELECTED]}" | awk '{print $1}')"
 if [[ "$SPACE_AVAILABLE" -ge "$SPACE_REQUIRED" ]];
 then
-    sudo dar -x "$BACKUP_MOUNT_TARGET/$(echo ${BACKUPS[$BACKUP_SELECTED]} | cut -d '.' -f 1)" -R "$RESTORE_TARGET" -Kcamellia:"$(cat $KEY_FILE)"
+    sudo dar -x "$BACKUP_MOUNT_TARGET/$(echo ${BACKUPS[$BACKUP_SELECTED]} | cut -d '.' -f 1)" -R "$RESTORE_TARGET" -Kcamellia:"$(sudo cat $KEY_FILE)"
 else
     echo "Not enough space. Needs at least $SPACE_REQUIRED KB." > /dev/stderr
     exit 1

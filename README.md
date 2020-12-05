@@ -8,7 +8,7 @@ This scripts are written to backup and restore a choosen directory on an [Linux]
  * Super user rights
 
 ## Preparations
-Create an suitable symmetric key file (for example by issuing `sudo openssl rand -out /home/backup_key_$USER.txt -base64 32`).
+Create an suitable symmetric key file (for example by issuing `sudo openssl rand -out /home/backup_key_$USER.txt -base64 32 && sudo chmod 600 backup_key_$USER.txt`).
 
 ## Test conditions
  * DAR: v2.6.12
