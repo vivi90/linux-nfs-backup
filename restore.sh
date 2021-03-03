@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # NFS restore script.
-# v1.0.1
+# v1.0.2
 # 2020 by Vivien Richter <vivien-richter@outlook.de>
 # MIT License
 # Git repository: https://github.com/vivi90/linux-nfs-backup.git
@@ -13,7 +13,7 @@ BACKUP_NAME_PATTERN="$(basename "$BACKUP_SOURCE")_*.tar.gz.gpg"
 BACKUP_KEY_FILE="/home/backup_key_$USER.txt"
 
 # Mount NFS file system and ensure it's finally unmount
-sudo mkdir $BACKUP_MOUNT_TARGET
+sudo mkdir -p $BACKUP_MOUNT_TARGET
 sudo mount $BACKUP_NFS_SOURCE $BACKUP_MOUNT_TARGET
 trap 'sudo umount "$BACKUP_MOUNT_TARGET" && sudo rmdir "$BACKUP_MOUNT_TARGET"' EXIT
 
